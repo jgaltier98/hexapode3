@@ -43,8 +43,8 @@ char tableau_reception_lidar[20]={0};
 void test_servo(short patte);
 void test_all_servo(void);
 void send_BT(char * str,short nb_char);
-void delay(int seconde);
-void delay2(int seconde);
+void delay(int centieme_seconde);
+void delay2(int dixieme_seconde);
 void rotation(int nombre_de_tour);
 void synchro_patte_2_4_6(int pos_1,int pos_2,int pos_3);
 void synchro_patte_1_3_5(int pos_1,int pos_2,int pos_3);
@@ -322,19 +322,25 @@ void marche(short direction){
 	}
 	//mise en position 2 4 6 ##########################################
 	send_position(deux,150,70,210); 
+	delay2(1);
 	send_position(quatre,150,70,210); 
+	delay2(1);
 	send_position(six,150,70,210); 
 	
 	delay(fluidity);
 	
 	send_position(deux,150,70,140);
+	delay2(1);
 	send_position(quatre,190,70,150);
+	delay2(1);
 	send_position(six,110,70,150);
 	
 	delay(fluidity);
 	
 	send_position(deux,150,160,100); //direction <= direction%6+1 a faire avant
+	delay2(1);
 	send_position(quatre,190,150,150); //direction+2
+	delay2(1);
 	send_position(six,110,150,150); //direction+4
 	
 	//#################################################################
@@ -342,20 +348,26 @@ void marche(short direction){
 	delay(fluidity);
 	
 	send_position(un,150,70,210); //direction-1
+	delay2(1);
 	send_position(trois,150,70,210); //direction+2-1
+	delay2(1);
 	send_position(cinq,150,70,210); //direction+4-1
 	//#################################################################
 	//imprimer mouvement 2 4 6#########################################
 	delay(fluidity);
 	send_position(deux,150,150,150);
+	delay2(1);
 	send_position(quatre,150,150,150);
+	delay2(1);
 	send_position(six,150,150,150);
 	//#################################################################
 	//fin préparation mouvement 1 3 5##################################
 	delay(fluidity);
 	
 	send_position(un,150,150,150);
+	delay2(1);
 	send_position(trois,150,150,150);
+	delay2(1); 
 	send_position(cinq,150,150,150);
 	
 	delay(fluidity);
@@ -398,14 +410,20 @@ void rotation(int nombre_de_tour){
 void synchro_patte_2_4_6(int pos_1,int pos_2,int pos_3){
 	//Fonction permettant de synchroniser les pattes 2,4 et 6
 	send_position(ADDR_DEUX,pos_1,pos_2,pos_3);	
+	delay(1);
 	send_position(ADDR_QUATRE,pos_1,pos_2,pos_3);
+	delay(1);
 	send_position(ADDR_SIX,pos_1,pos_2,pos_3);
+	delay(1);
 }
 void synchro_patte_1_3_5(int pos_1,int pos_2,int pos_3){
 	//Fonction permettant de synchroniser les pattes 1,3 et 5
 	send_position(ADDR_UN,pos_1,pos_2,pos_3);
+	delay(1);
 	send_position(ADDR_TROIS,pos_1,pos_2,pos_3);
+	delay(1);
 	send_position(ADDR_CINQ,pos_1,pos_2,pos_3);
+	delay(1);
 }
 
 void delay(int centieme_seconde){
